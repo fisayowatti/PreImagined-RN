@@ -3,4 +3,5 @@ export type Routes = {
   Swiping: undefined;
   ScrollFlip: undefined;
   FloppyBg: undefined;
+  Dendy: undefined;
 };

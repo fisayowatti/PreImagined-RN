@@ -7,6 +7,7 @@ import Swiping, { swipingAssets } from "./src/Swiping";
 import { LoadAssets } from "./src/components";
 import Scrollflip from "./src/ScrollFlip";
 import FloppyBg from "./src/Floppy";
+import Dendy from "./src/Dendy";
 
 const assets = [...swipingAssets];
 const Stack = createStackNavigator<Routes>();
@@ -40,7 +41,13 @@ const App = () => (
         component={FloppyBg}
         options={{
           headerShown: false,
-          // title: "ScrollFlip",
+        }}
+      />
+      <Stack.Screen
+        name="Dendy"
+        component={Dendy}
+        options={{
+          headerShown: false,
         }}
       />
     </Stack.Navigator>

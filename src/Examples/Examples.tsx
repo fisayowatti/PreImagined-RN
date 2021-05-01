@@ -20,6 +20,10 @@ export const examples = [
     screen: "FloppyBg",
     title: "Floppy Background",
   },
+  {
+    screen: "Dendy",
+    title: "Dendy",
+  },
 ] as const;
 
 const styles = StyleSheet.create({
