@@ -7,12 +7,11 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { TouchableNativeFeedback } from "react-native-gesture-handler";
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import Animated, {
   runOnUI,
   useAnimatedStyle,
   withDelay,
-  withSequence,
   withTiming,
 } from "react-native-reanimated";
 import Icon, { validNames } from "./components/Icon";
@@ -24,6 +23,7 @@ const { width } = Dimensions.get("window");
 interface MenuButtonProps {
   label: string;
   icon: string;
+  selectedOption: Animated.SharedValue<string>;
   onButtonClick?: () => void;
 }
 
@@ -70,14 +70,25 @@ const Close = ({ onCloseClick, menuActive, selectedOption }: CloseProps) => {
   );
 };
 
-const MenuButton = ({ label, icon, onButtonClick }: MenuButtonProps) => {
+const MenuButton = ({
+  label,
+  icon,
+  onButtonClick,
+  selectedOption,
+}: MenuButtonProps) => {
+  const containerStyle = useAnimatedStyle(() => {
+    return {
+      backgroundColor:
+        selectedOption.value === icon ? "#7154ca" : "transparent",
+    };
+  });
   return (
-    <TouchableOpacity onPress={onButtonClick}>
-      <View style={styles.menuButtonContainer}>
+    <TouchableWithoutFeedback onPress={onButtonClick}>
+      <Animated.View style={[styles.menuButtonContainer, containerStyle]}>
         <Icon name={icon} />
         <Text style={styles.menuButtonText}>{label}</Text>
-      </View>
-    </TouchableOpacity>
+      </Animated.View>
+    </TouchableWithoutFeedback>
   );
 };
 
@@ -128,30 +139,35 @@ export default function MenuContent({
         label="Art"
         icon="art"
         onButtonClick={() => onMenuButtonClick(validNames.art)}
+        selectedOption={selectedOption}
       />
       <Spacer ySpace={20} />
       <MenuButton
         label="Photography"
         icon="photography"
         onButtonClick={() => onMenuButtonClick(validNames.photography)}
+        selectedOption={selectedOption}
       />
       <Spacer ySpace={20} />
       <MenuButton
         label="Games"
         icon="games"
         onButtonClick={() => onMenuButtonClick(validNames.games)}
+        selectedOption={selectedOption}
       />
       <Spacer ySpace={20} />
       <MenuButton
         label="Music"
         icon="music"
         onButtonClick={() => onMenuButtonClick(validNames.music)}
+        selectedOption={selectedOption}
       />
       <Spacer ySpace={20} />
       <MenuButton
         label="Memes"
         icon="memes"
         onButtonClick={() => onMenuButtonClick(validNames.memes)}
+        selectedOption={selectedOption}
       />
       <Spacer ySpace={70} />
       <SortButton />
