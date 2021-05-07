@@ -5,8 +5,39 @@ import Category from "./Category";
 import AppLoading from "expo-app-loading";
 import { useFonts } from "expo-font";
 import { useSharedValue } from "react-native-reanimated";
+import { createSharedElementStackNavigator } from "react-navigation-shared-element";
+import { NavigationContainer } from "@react-navigation/native";
+import Detail from "./Detail";
 
-export default function Dendy() {
+const Stack = createSharedElementStackNavigator();
+
+export default function DendyNavigation() {
+  const options = {
+    headerBackTitleVisible: false,
+    cardStyleInterpolator: ({ current: { progress } }) => {
+      return {
+        cardStyle: {
+          opacity: progress,
+        },
+      };
+    },
+  };
+
+  return (
+    <NavigationContainer independent={true}>
+      <Stack.Navigator headerMode="none" initialRouteName="Dendy">
+        <Stack.Screen name="Dendy" component={Dendy} options={() => options} />
+        <Stack.Screen
+          name="Detail"
+          component={Detail}
+          options={() => options}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+function Dendy(props) {
   let [fontsLoaded] = useFonts({
     "Gilroy-Regular": require("../../assets/fonts/Gilroy-Regular.ttf"),
     "Gilroy-SemiBold": require("../../assets/fonts/Gilroy-SemiBold.ttf"),
@@ -14,8 +45,6 @@ export default function Dendy() {
   });
 
   const menuActive = useSharedValue(false);
-
-  const isOptionSelected = useSharedValue(false);
 
   const selectedOption = useSharedValue("home");
 
@@ -27,7 +56,7 @@ export default function Dendy() {
     return (
       <Fragment>
         <View style={styles.container}>
-          <Category selectedOption={selectedOption} />
+          <Category selectedOption={selectedOption} {...props} />
           <Menu {...{ menuActive, selectedOption }} />
         </View>
       </Fragment>
