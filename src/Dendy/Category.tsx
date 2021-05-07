@@ -1,6 +1,9 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
+import {
+  ScrollView,
+  TouchableWithoutFeedback,
+} from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 import HeaderRow from "./components/HeaderRow";
 import Search from "./components/Search";
@@ -14,7 +17,6 @@ import Animated, {
   runOnUI,
   useDerivedValue,
 } from "react-native-reanimated";
-import { ReText } from "react-native-redash";
 
 const renderTitle = (selectedOption: Animated.SharedValue<string>) => {
   "worklet";
@@ -36,9 +38,15 @@ const renderTitle = (selectedOption: Animated.SharedValue<string>) => {
 
 interface CategoryProps {
   selectedOption: Animated.SharedValue<string>;
+  route: any;
+  navigation: any;
 }
 
-export default function Category({ selectedOption }: CategoryProps) {
+export default function Category({
+  selectedOption,
+  route,
+  navigation,
+}: CategoryProps) {
   //updating state renders the correct selectedOption value
   const [x, setX] = useState("");
   useDerivedValue(() => {
@@ -80,7 +88,12 @@ export default function Category({ selectedOption }: CategoryProps) {
             <View>
               {data[selectedOption.value].map(
                 ({ id, name, price, priceUnit, image }) => (
-                  <Item key={id} {...{ name, price, priceUnit, image }} />
+                  <TouchableWithoutFeedback
+                    key={id}
+                    onPress={() => navigation.navigate("Detail")}
+                  >
+                    <Item {...{ name, price, priceUnit, image }} />
+                  </TouchableWithoutFeedback>
                 )
               )}
             </View>
