@@ -1,7 +1,7 @@
 import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { TouchableNativeFeedback } from "react-native-gesture-handler";
 import { Fonts } from "../data";
+import { SharedElement } from "react-navigation-shared-element";
 
 interface HeaderRowProps {
   onMenuClick: () => void;
@@ -15,12 +15,14 @@ export default function HeaderRow({ onMenuClick }: HeaderRowProps) {
           <Text style={styles.buttonText}>Menu</Text>
         </View>
       </TouchableOpacity>
-      <Image
-        style={styles.image}
-        source={{ uri: "https://source.unsplash.com/random/600x600" }}
-        height={56}
-        width={56}
-      />
+      <SharedElement id={`item.profileImage`}>
+        <Image
+          style={styles.image}
+          source={{ uri: "https://source.unsplash.com/random/600x600" }}
+          height={56}
+          width={56}
+        />
+      </SharedElement>
     </View>
   );
 }
