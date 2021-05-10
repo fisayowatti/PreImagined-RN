@@ -6,15 +6,18 @@ import AppLoading from "expo-app-loading";
 import { useFonts } from "expo-font";
 import { useSharedValue } from "react-native-reanimated";
 import { createSharedElementStackNavigator } from "react-navigation-shared-element";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, RouteProp } from "@react-navigation/native";
 import Detail from "./Detail";
+import { StackCardInterpolationProps } from "@react-navigation/stack";
 
 const Stack = createSharedElementStackNavigator();
 
 export default function DendyNavigation() {
   const options = {
     headerBackTitleVisible: false,
-    cardStyleInterpolator: ({ current: { progress } }) => {
+    cardStyleInterpolator: ({
+      current: { progress },
+    }: StackCardInterpolationProps) => {
       return {
         cardStyle: {
           opacity: progress,
@@ -37,7 +40,12 @@ export default function DendyNavigation() {
   );
 }
 
-function Dendy(props) {
+interface DendyProps {
+  navigation: any;
+  route: RouteProp<Record<string, object | undefined>, string>;
+}
+
+function Dendy(props: DendyProps) {
   let [fontsLoaded] = useFonts({
     "Gilroy-Regular": require("../../assets/fonts/Gilroy-Regular.ttf"),
     "Gilroy-SemiBold": require("../../assets/fonts/Gilroy-SemiBold.ttf"),

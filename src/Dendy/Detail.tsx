@@ -21,7 +21,7 @@ import Animated, {
   withDelay,
   withTiming,
 } from "react-native-reanimated";
-import { useFocusEffect } from "@react-navigation/core";
+import { RouteProp, useFocusEffect } from "@react-navigation/core";
 
 const { height, width } = Dimensions.get("window");
 
@@ -29,7 +29,7 @@ const SCALE_DURATION = 300;
 const IMAGE_CONTAINER_HEIGHT = 324;
 
 interface DetailProps {
-  route: any;
+  route: RouteProp<Record<string, object | undefined>, string>;
   navigation: any;
 }
 
