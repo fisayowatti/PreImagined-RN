@@ -7,8 +7,8 @@ import {
   StyleSheet,
   Text,
   View,
+  TouchableOpacity,
 } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Spacer from "./components/Spacer";
 import { SCREEN_PADDING_HORIZONTAL } from "./constants";
@@ -103,9 +103,11 @@ export default function Detail({ route, navigation }: DetailProps) {
       <Animated.View style={[restOfPageStyle]}>
         <View style={styles.headerRow}>
           <TouchableOpacity onPress={() => navigation.goBack()}>
-            <View style={styles.backButton}>
-              <SimpleLineIcons name="arrow-left" size={20} color="#5a40b4" />
-            </View>
+            <SharedElement id={`item.backButton`}>
+              <View style={styles.backButton}>
+                <SimpleLineIcons name="arrow-left" size={20} color="#5a40b4" />
+              </View>
+            </SharedElement>
           </TouchableOpacity>
         </View>
         <Spacer ySpace={32} />
@@ -136,17 +138,26 @@ export default function Detail({ route, navigation }: DetailProps) {
         </Text>
         <Spacer ySpace={40} />
         <View style={styles.buttonRow}>
-          <View style={[styles.buyButton, styles.bottomButton]}>
-            <Text style={[styles.bottomButtonText, styles.buyButtonText]}>
-              Buy now
-            </Text>
-          </View>
+          <TouchableOpacity
+            style={{ flex: 1 }}
+            onPress={() =>
+              navigation.navigate("Success", { id: route.params?.id })
+            }
+          >
+            <View style={[styles.buyButton, styles.bottomButton]}>
+              <Text style={[styles.bottomButtonText, styles.buyButtonText]}>
+                Buy now
+              </Text>
+            </View>
+          </TouchableOpacity>
           <Spacer xSpace={18} />
-          <View style={[styles.bidButton, styles.bottomButton]}>
-            <Text style={[styles.bottomButtonText, styles.bidButtonText]}>
-              Bid
-            </Text>
-          </View>
+          <TouchableOpacity style={{ flex: 1 }}>
+            <View style={[styles.bidButton, styles.bottomButton]}>
+              <Text style={[styles.bottomButtonText, styles.bidButtonText]}>
+                Bid
+              </Text>
+            </View>
+          </TouchableOpacity>
         </View>
       </Animated.View>
     </SafeAreaView>
@@ -246,7 +257,7 @@ const styles = StyleSheet.create({
   },
   bottomButtonText: {
     fontFamily: Fonts.gilroyMedium,
-    fontSize: 18,
+    fontSize: 16,
   },
   buyButton: {
     backgroundColor: "#5d3cc5",
