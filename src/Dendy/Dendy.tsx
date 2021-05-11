@@ -8,6 +8,7 @@ import { useSharedValue } from "react-native-reanimated";
 import { createSharedElementStackNavigator } from "react-navigation-shared-element";
 import { NavigationContainer, RouteProp } from "@react-navigation/native";
 import Detail from "./Detail";
+import Success from "./Success";
 import { StackCardInterpolationProps } from "@react-navigation/stack";
 
 const Stack = createSharedElementStackNavigator();
@@ -33,6 +34,11 @@ export default function DendyNavigation() {
         <Stack.Screen
           name="Detail"
           component={Detail}
+          options={() => options}
+        />
+        <Stack.Screen
+          name="Success"
+          component={Success}
           options={() => options}
         />
       </Stack.Navigator>
