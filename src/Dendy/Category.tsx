@@ -90,7 +90,9 @@ export default function Category({
                 ({ id, name, price, priceUnit, image }) => (
                   <TouchableWithoutFeedback
                     key={id}
-                    onPress={() => navigation.navigate("Detail", { id })}
+                    onPress={() =>
+                      navigation.navigate("Detail", { id, category: x })
+                    }
                   >
                     <Item {...{ name, price, priceUnit, image }} />
                   </TouchableWithoutFeedback>
