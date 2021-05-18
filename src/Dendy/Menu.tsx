@@ -1,14 +1,14 @@
 import React from "react";
 import MaskedView from "@react-native-community/masked-view";
-import { Dimensions, StyleSheet, View, Text } from "react-native";
-import Home from "./Home";
-import MenuContent from "./MenuContent";
+import { Dimensions, StyleSheet } from "react-native";
 import Animated, {
   useAnimatedStyle,
-  useDerivedValue,
   withDelay,
   withTiming,
 } from "react-native-reanimated";
+
+import Home from "./Home";
+import MenuContent from "./MenuContent";
 
 const { width, height } = Dimensions.get("window");
 
@@ -40,8 +40,6 @@ export default function Menu({ menuActive, selectedOption }: MenuProps) {
     const translateX = menuActive.value
       ? withDelay(300, withTiming(150, { duration: 200 }))
       : withTiming(240, { duration: 200 });
-
-    console.log("weird", menuActive.value, height, width, scale);
 
     return {
       height,
@@ -120,17 +118,6 @@ export default function Menu({ menuActive, selectedOption }: MenuProps) {
 const styles = StyleSheet.create({
   container: {
     position: "absolute",
-    // top: "50%",
-    // left: "50%",
-    // marginTop: -(SIZE / 2),
-    // marginLeft: -(SIZE / 2),
-    // width: SIZE,
-    // height: SIZE,
-    // backgroundColor: "#ffffff",
-    // justifyContent: "center",
-    // alignItems: "center",
-    // overflow: "hidden",
-    // transform: [{ translateY: 100 }],
     width: "100%",
     backgroundColor: "#5d3cc5",
     overflow: "hidden",

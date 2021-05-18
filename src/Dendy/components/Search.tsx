@@ -1,6 +1,7 @@
 import { Octicons } from "@expo/vector-icons";
 import React from "react";
 import { Dimensions, StyleSheet, TextInput, View } from "react-native";
+
 import { SCREEN_PADDING_HORIZONTAL } from "../constants";
 
 const { width } = Dimensions.get("screen");

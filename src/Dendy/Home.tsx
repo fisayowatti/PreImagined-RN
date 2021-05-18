@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import Animated, { runOnUI } from "react-native-reanimated";
 import { SafeAreaView } from "react-native-safe-area-context";
+
 import Filter from "./components/Filter";
 import HeaderRow from "./components/HeaderRow";
 import Item from "./components/Item";

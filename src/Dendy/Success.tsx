@@ -2,7 +2,6 @@ import { SimpleLineIcons } from "@expo/vector-icons";
 import React from "react";
 import {
   Dimensions,
-  Image,
   InteractionManager,
   StyleSheet,
   Text,
@@ -10,9 +9,6 @@ import {
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Spacer from "./components/Spacer";
-import { SCREEN_PADDING_HORIZONTAL } from "./constants";
-import { Fonts } from "./data";
 import { SharedElement } from "react-navigation-shared-element";
 import Animated, {
   runOnUI,
@@ -22,13 +18,14 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import { RouteProp, useFocusEffect } from "@react-navigation/core";
-import { ReText } from "react-native-redash";
+// import { ReText } from "react-native-redash";
+
+import Spacer from "./components/Spacer";
+import { SCREEN_PADDING_HORIZONTAL } from "./constants";
+import { Fonts } from "./data";
 import Icon from "./components/Icon";
 
-const { height, width } = Dimensions.get("window");
-
-const SCALE_DURATION = 300;
-const IMAGE_CONTAINER_HEIGHT = 324;
+const { width } = Dimensions.get("window");
 
 interface DetailProps {
   route: RouteProp<Record<string, object | undefined>, string>;
@@ -168,10 +165,10 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.gilroyMedium,
     fontSize: 16,
   },
-  buttonRow: {
-    flexDirection: "row",
-    justifyContent: "center",
-  },
+  // buttonRow: {
+  //   flexDirection: "row",
+  //   justifyContent: "center",
+  // },
   button: {
     width: "100%",
     height: 66,

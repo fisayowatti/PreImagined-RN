@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { SimpleLineIcons } from "@expo/vector-icons";
 import React from "react";
 import {
@@ -10,20 +11,20 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Spacer from "./components/Spacer";
-import { SCREEN_PADDING_HORIZONTAL } from "./constants";
-import { data, Fonts } from "./data";
 import { SharedElement } from "react-navigation-shared-element";
 import Animated, {
   runOnUI,
   useAnimatedStyle,
   useSharedValue,
-  withDelay,
   withTiming,
 } from "react-native-reanimated";
 import { RouteProp, useFocusEffect } from "@react-navigation/core";
 
-const { height, width } = Dimensions.get("window");
+import Spacer from "./components/Spacer";
+import { SCREEN_PADDING_HORIZONTAL } from "./constants";
+import { data, Fonts } from "./data";
+
+const { height } = Dimensions.get("window");
 
 const SCALE_DURATION = 300;
 const IMAGE_CONTAINER_HEIGHT = 324;
@@ -82,7 +83,7 @@ export default function Detail({ route, navigation }: DetailProps) {
 
     return {
       height: IMAGE_CONTAINER_HEIGHT,
-      width: `100%`,
+      width: "100%",
       borderRadius: 10,
       backgroundColor: "#ddd",
       // marginLeft,
@@ -95,7 +96,7 @@ export default function Detail({ route, navigation }: DetailProps) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.profileImageContainer}>
-        <SharedElement id={`item.profileImage`}>
+        <SharedElement id={"item.profileImage"}>
           <Image
             style={styles.profileImage}
             source={{
@@ -110,7 +111,7 @@ export default function Detail({ route, navigation }: DetailProps) {
       <Animated.View style={[restOfPageStyle]}>
         <View style={styles.headerRow}>
           <TouchableOpacity onPress={() => navigation.goBack()}>
-            <SharedElement id={`item.backButton`}>
+            <SharedElement id={"item.backButton"}>
               <View style={styles.backButton}>
                 <SimpleLineIcons name="arrow-left" size={20} color="#5a40b4" />
               </View>

@@ -1,10 +1,16 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import {
   ScrollView,
   TouchableWithoutFeedback,
 } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
+import Animated, {
+  runOnJS,
+  runOnUI,
+  useDerivedValue,
+} from "react-native-reanimated";
+
 import HeaderRow from "./components/HeaderRow";
 import Search from "./components/Search";
 import Spacer from "./components/Spacer";
@@ -12,11 +18,6 @@ import { validNames } from "./components/Icon";
 import { data, Fonts } from "./data";
 import Item from "./components/Item";
 import { SCREEN_PADDING_HORIZONTAL } from "./constants";
-import Animated, {
-  runOnJS,
-  runOnUI,
-  useDerivedValue,
-} from "react-native-reanimated";
 
 const renderTitle = (selectedOption: Animated.SharedValue<string>) => {
   "worklet";
@@ -44,7 +45,6 @@ interface CategoryProps {
 
 export default function Category({
   selectedOption,
-  route,
   navigation,
 }: CategoryProps) {
   //updating state renders the correct selectedOption value

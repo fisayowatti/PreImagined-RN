@@ -1,5 +1,6 @@
+/* eslint-disable max-len */
 import React from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import Svg, { Mask, Path, G } from "react-native-svg";
 
 const ArtIcon = () => (
@@ -158,7 +159,7 @@ interface IconProps {
   size?: number;
 }
 
-export default function Icon({ name, size }: IconProps) {
+export default function Icon({ name }: IconProps) {
   // const dimensions = size ? size : 32;
   const renderedIcon = () => {
     switch (name) {

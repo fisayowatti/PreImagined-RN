@@ -1,15 +1,16 @@
 import React, { Fragment } from "react";
 import { StyleSheet, View } from "react-native";
-import Menu from "./Menu";
-import Category from "./Category";
+import { StackCardInterpolationProps } from "@react-navigation/stack";
 import AppLoading from "expo-app-loading";
 import { useFonts } from "expo-font";
 import { useSharedValue } from "react-native-reanimated";
 import { createSharedElementStackNavigator } from "react-navigation-shared-element";
 import { NavigationContainer, RouteProp } from "@react-navigation/native";
+
 import Detail from "./Detail";
 import Success from "./Success";
-import { StackCardInterpolationProps } from "@react-navigation/stack";
+import Menu from "./Menu";
+import Category from "./Category";
 
 const Stack = createSharedElementStackNavigator();
 
@@ -52,7 +53,7 @@ interface DendyProps {
 }
 
 function Dendy(props: DendyProps) {
-  let [fontsLoaded] = useFonts({
+  const [fontsLoaded] = useFonts({
     "Gilroy-Regular": require("../../assets/fonts/Gilroy-Regular.ttf"),
     "Gilroy-SemiBold": require("../../assets/fonts/Gilroy-SemiBold.ttf"),
     "Gilroy-Medium": require("../../assets/fonts/Gilroy-Medium.ttf"),

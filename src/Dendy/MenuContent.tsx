@@ -1,5 +1,5 @@
-import { Ionicons, Octicons } from "@expo/vector-icons";
 import React from "react";
+import { Ionicons, Octicons } from "@expo/vector-icons";
 import {
   Dimensions,
   StyleSheet,
@@ -14,6 +14,7 @@ import Animated, {
   withDelay,
   withTiming,
 } from "react-native-reanimated";
+
 import Icon, { validNames } from "./components/Icon";
 import Spacer from "./components/Spacer";
 import { Fonts } from "./data";
@@ -38,9 +39,9 @@ interface CloseProps {
   selectedOption: Animated.SharedValue<string>;
 }
 
-const Block = () => (
-  <View style={{ height: 20, width: 20, backgroundColor: "#ccc" }} />
-);
+// const Block = () => (
+//   <View style={{ height: 20, width: 20, backgroundColor: "#ccc" }} />
+// );
 
 const Close = ({ onCloseClick, menuActive, selectedOption }: CloseProps) => {
   const closeStyle = useAnimatedStyle(() => {
