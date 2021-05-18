@@ -23,6 +23,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { RouteProp, useFocusEffect } from "@react-navigation/core";
 import { ReText } from "react-native-redash";
+import Icon from "./components/Icon";
 
 const { height, width } = Dimensions.get("window");
 
@@ -117,11 +118,8 @@ export default function Detail({ route, navigation }: DetailProps) {
       <Spacer ySpace={100} />
       <View style={styles.page}>
         <Animated.View style={contentStyle}>
-          <Image
-            style={{ height: 207, width: 135 }}
-            source={{ uri: "https://source.unsplash.com/random/600x600" }}
-          />
-          <Spacer ySpace={60} />
+          <Icon name="margarita" />
+          <Spacer ySpace={40} />
           <Text style={styles.text}>Congratulations!</Text>
           <Spacer ySpace={10} />
           <Text style={styles.text}>Your order is accepted</Text>
