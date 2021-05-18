@@ -12,7 +12,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import Spacer from "./components/Spacer";
 import { SCREEN_PADDING_HORIZONTAL } from "./constants";
-import { Fonts } from "./data";
+import { data, Fonts } from "./data";
 import { SharedElement } from "react-navigation-shared-element";
 import Animated, {
   runOnUI,
@@ -34,6 +34,8 @@ interface DetailProps {
 }
 
 export default function Detail({ route, navigation }: DetailProps) {
+  const { category, id } = route.params;
+
   const isPageFocused = useSharedValue(false);
 
   const updateIsPageFocused = (value: boolean) => {
@@ -88,13 +90,18 @@ export default function Detail({ route, navigation }: DetailProps) {
     };
   });
 
+  const pageInfo = data[category]?.find((info) => info.id === id);
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.profileImageContainer}>
         <SharedElement id={`item.profileImage`}>
           <Image
             style={styles.profileImage}
-            source={{ uri: "https://source.unsplash.com/random/600x600" }}
+            source={{
+              uri:
+                "https://images.unsplash.com/photo-1457449940276-e8deed18bfff?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+            }}
             height={56}
             width={56}
           />
@@ -114,7 +121,7 @@ export default function Detail({ route, navigation }: DetailProps) {
         <Animated.View style={styles.imageContainer}>
           <Animated.Image
             style={[imageStyle]}
-            source={{ uri: "https://source.unsplash.com/random/600x600" }}
+            source={{ uri: pageInfo?.image }}
             // height={400}
             // resizeMode="center"
           />
@@ -122,27 +129,28 @@ export default function Detail({ route, navigation }: DetailProps) {
         <Spacer ySpace={30} />
         <View style={styles.metaRow}>
           <View style={styles.pill}>
-            <Text style={styles.pillText}>Art</Text>
+            <Text style={styles.pillText}>
+              {category?.replace(/^./, category?.[0].toUpperCase())}
+            </Text>
           </View>
           <View style={styles.priceWrapper}>
-            <Text style={styles.price}>{18}</Text>
-            <Text style={styles.priceUnit}>{"ETH"}</Text>
+            <Text style={styles.price}>{pageInfo?.price}</Text>
+            <Text style={styles.priceUnit}>{pageInfo?.priceUnit}</Text>
           </View>
         </View>
         <Spacer ySpace={30} />
-        <Text style={styles.title}>Nature</Text>
+        <Text style={styles.title}>{pageInfo?.name}</Text>
         <Spacer ySpace={12} />
         <Text style={styles.body}>
-          Nature has many aspects of it that are wondrous to behold. The sights,
-          sounds and even smells that we've been blessed with...
+          I don't know about you, but when faced with the task of generating
+          custom content for a mock project like this, I'm prone to caving in
+          and writing material such as this...
         </Text>
         <Spacer ySpace={40} />
         <View style={styles.buttonRow}>
           <TouchableOpacity
             style={{ flex: 1 }}
-            onPress={() =>
-              navigation.navigate("Success", { id: route.params?.id })
-            }
+            onPress={() => navigation.navigate("Success", { id })}
           >
             <View style={[styles.buyButton, styles.bottomButton]}>
               <Text style={[styles.bottomButtonText, styles.buyButtonText]}>
@@ -225,7 +233,8 @@ const styles = StyleSheet.create({
   },
   pill: {
     height: 30,
-    width: 70,
+    // width: 70,
+    paddingHorizontal: 24,
     borderRadius: 15,
     backgroundColor: "#fce7e8",
     justifyContent: "center",
