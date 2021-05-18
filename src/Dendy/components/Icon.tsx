@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, View } from "react-native";
-import { Svg, Mask, Path } from "react-native-svg";
+import Svg, { Mask, Path, G } from "react-native-svg";
 
 const ArtIcon = () => (
   <Svg
@@ -95,6 +95,56 @@ const MemesIcon = () => (
   </Svg>
 );
 
+//i know it's not an icon. It's killing me too 🥲.
+const MargaritaIcon = () => (
+  <Svg
+    width={250}
+    height={250}
+    viewBox="0 0 250 250"
+    fill="none"
+    // xmlns="http://www.w3.org/2000/svg"
+  >
+    <Mask
+      id="prefix__a"
+      maskUnits="userSpaceOnUse"
+      x={55}
+      y={49}
+      width={59}
+      height={72}
+    >
+      <Path fill="#C4C4C4" d="M55 49h59v72H55z" />
+    </Mask>
+    <G mask="url(#prefix__a)">
+      <Path
+        d="M75.22 49.763l38.797 16.464-59.27 20.375L75.22 49.763z"
+        fill="#F8D412"
+      />
+      <Path d="M85.5 72.5L105 121" stroke="#2D5131" strokeWidth={2} />
+      <Path
+        d="M75 49.5L55.5 86l8.5-2.5 11-34zM75 49.5V79l14.5-4.5-14.5-25zM113.5 66L75 49.5l29.5 20 9-3.5z"
+        fill="#3D8845"
+      />
+    </G>
+    <Path
+      d="M158 32.5l-21 97h6L162.5 37c4.155-9.358 7.29-10.669 13.5-10l19.5 5.5V27L173 22c-8.031.047-11.15 2.657-15 10.5z"
+      fill="#EED646"
+    />
+    <Path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M105.944 101l19.556 44-7.333-44h69.612l-54.889 53.128v69.009c3.279.229 6.311.736 8.728 1.474 3.375 1.031 5.272 2.43 5.272 3.889h-36c0-1.459 1.896-2.858 5.272-3.889 2.416-.738 5.448-1.245 8.728-1.473v-69.01L70 101h35.944z"
+      fill="#FDBDCF"
+      fillOpacity={0.7}
+    />
+    <Path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M113.846 118.654L126 146l-4.579-27.476c5.187-.251 10.238-.868 14.521-2.024 14.511-3.918 28.085-1.633 32.058 0L129.204 153 90.5 116.5c4.27.917 13.502 2.04 23.346 2.154z"
+      fill="#F46123"
+    />
+  </Svg>
+);
+
 export enum validNames {
   art = "art",
   photography = "photography",
@@ -122,6 +172,8 @@ export default function Icon({ name, size }: IconProps) {
         return <MusicIcon />;
       case validNames.memes:
         return <MemesIcon />;
+      case "margarita":
+        return <MargaritaIcon />;
       default:
         return <PhotographyIcon />;
     }
